@@ -136,7 +136,7 @@ function changePass($username, $password)
 
 }
 
-function createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , $ans, $role)
+function createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , $ans, $role , $phone,  $refcode)
 {
   $servername = "localhost";
   $dbusername = "root";
@@ -151,11 +151,11 @@ function createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , 
     die("Connection failed: " . $conn->connect_error);
   }
   
-    $sql = "INSERT INTO users (firstName, lastName, email, username, password , secQuestion , ans, role) VALUES (?, ?, ?, ?, ? ,?, ?, ?)";
+    $sql = "INSERT INTO users (firstName, lastName, email, username, password , secQuestion , ans, role , phone , refCode) VALUES (?, ?, ?, ?, ? ,?, ?, ? , ? , ?)";
     $stmt = $conn->prepare($sql);
 
     
-    $stmt->bind_param("ssssssss", $fname, $lname, $email, $uname, $cpassword, $secQuestion, $ans, $role);
+    $stmt->bind_param("ssssssssss", $fname, $lname, $email, $uname, $cpassword, $secQuestion, $ans, $role , $phone , $refcode);
 
     
     if ($stmt->execute()) {
@@ -167,6 +167,83 @@ function createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , 
 
     $stmt->close();
     $conn->close();
+
+}
+function getDriverID($uname)
+{
+
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT id FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+
+   
+    $stmt->bind_param("s", $uname);
+
+    
+    $stmt->execute();
+
+  
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Fetching row
+        $row = $result->fetch_assoc();
+
+    } else {
+        echo "0 results";
+    }
+
+    $stmt->close();
+    $conn->close();
+    return $row['id'];
+
+}
+
+function createDriver( $age, $nid , $license , $exp , $id)
+{
+ 
+
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+    
+    
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+    
+      $sql = "INSERT INTO drivers (age, nid, license, exp, id) VALUES (?, ?, ?, ?, ?)";
+      $stmt = $conn->prepare($sql);
+  
+      
+      $stmt->bind_param("iiisi", $age , $nid , $license , $exp , $id );
+  
+      
+      if ($stmt->execute()) {
+          return true;
+      } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+          return false;
+      }
+  
+      $stmt->close();
+      $conn->close();
+
 
 }
 
@@ -216,7 +293,7 @@ function credentials($username, $password)
     $conn->close();
   }
 
-function updateUser($id, $uname , $fname, $lname, $password)
+  function updateUser($id, $uname , $fname, $lname, $password)
 {
     $servername = "localhost";
     $dbusername = "root";
@@ -249,6 +326,37 @@ function updateUser($id, $uname , $fname, $lname, $password)
     $conn->close();
 }
 
+function referCode($id)
+{
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("s", $id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Store the result
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $code = $row['refCode'];
+    return $code;
+
+}
+    //tanvir
 function getSpecificCustomerDetails($id)
 {
     $servername = "localhost";
@@ -258,7 +366,7 @@ function getSpecificCustomerDetails($id)
 
     // Create connection
     $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-    
+
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -296,37 +404,6 @@ function getSpecificCustomerDetails($id)
     $conn->close();
     return $users;
 }
-
-function deleteUser($id)
-{
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $dbname = "my_app";
-
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
- 
-    if ($conn->connect_error) 
-    {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "DELETE FROM users WHERE id=?";
-    $stmt = $conn->prepare($sql);
-
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) 
-    {
-        echo "User deleted successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-
-
 ?>
+
 

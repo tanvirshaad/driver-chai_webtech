@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    td {
+        padding-left: 100px;
+    }
+    
+}
+
+.navbar {
+    display: flex;
+    width: 100% !important;
+    justify-content: space-between;
+    padding: 10px 0px;
+    background-color: black;
+
+}
+
+.logo {
+    /* display: flex;
+    float: left; */
+}
+
+.navoption {
+    /* display: flex; 
+    float: right !important;
+    text-align: right; */
+}
+
+li {
+    list-style-type: none;
+    float: left;
+}
+
+ul li {}
+
+ul li a {
+    color: white;
+    font-size: 18x;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navoption a:hover {
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+    padding: 5px;
+}
+.btn {
+    padding: 5px 12px;
+    font-weight: 500;
+    color: black;
+}
+
+.btn:hover {
+    color: white !important;
+    background-color: black;
+    transition: 0.3s;
+    border: 2px solid black;
+}
+
+#myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #myUL li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    width: 70%;
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+  }
+  
+  #myUL li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+  }
+
+  .results {
+    width: 100%; /* Set the width of the results div to 100% of the parent container */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+}
+
+.results ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+}
+
+.results ul li {
+    width: 100%; /* Make each list item full width */
+    padding: 10px; /* Add padding to each list item for spacing */
+    background-color: lightgray; /* Optional: Add a background color */
+    border-bottom: 1px solid #ddd; /* Optional: Add a border bottom to separate items */
+}
+
+.results ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Set link color */
+}
+
+.results ul li a:hover {
+    color: blue; /* Change link color on hover */
+}

@@ -2,7 +2,6 @@
 session_start();
 require '../Model/connect.php';
 $currentUser = loggedIn();
-print_r($currentUser);
 
 if(isset($_POST['register']))
 {
@@ -16,11 +15,13 @@ if(isset($_POST['register']))
         $cpassword = $_POST['cpassword'];
         $secQuestion = $_POST['secQuestion'];
         $ans = $_POST['ans'];
-        $role = "user";
+        $role = $_POST['role'];
+        $phone = $_POST['phone'];
+        $refCode = $_POST['refCode'];
         if($password == $cpassword)
         {
             $_SESSION['passwordmatched'] = "";
-            createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , $ans, $role);
+            createUser($fname, $lname, $email, $uname, $cpassword , $secQuestion , $ans, $role , $phone, $refCode);
             header('Location: http://localhost/project/View/Login.php');
         }
         else

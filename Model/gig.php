@@ -72,7 +72,7 @@ function getSelfGig($id)
 
 }
 
-function getAllAvailableGigs()
+function getgigsfornewcustomer()
 {
     $servername = "localhost";
     $dbusername = "root";
@@ -108,6 +108,83 @@ function getAllAvailableGigs()
     }
     $conn->close();
     return $availableGigs;
+
+}
+
+function getGid($id)
+{
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT g_id FROM jobs WHERE c_id = ?";
+    $stmt = $conn->prepare($sql);
+    $availability = 1;
+    $stmt->bind_param("i", $id);
+
+    
+    $stmt->execute();
+
+  
+    $result = $stmt->get_result();
+
+    $gigIds = array();
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        array_push($gigIds, $row);
+    }
+    } else {
+     return false;
+    }
+    $conn->close();
+    return $gigIds;
+
+}
+
+function getAllAvailableGigs($gid)
+{
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM gigs WHERE available = ? AND NOT g_id = ?";
+    $stmt = $conn->prepare($sql);
+    $availability = 1;
+    $stmt->bind_param("si", $availability , $gid);
+    
+    $stmt->execute();
+
+  
+    $result = $stmt->get_result();
+
+    $availableGigs = array();
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        array_push($availableGigs, $row);
+    }
+    } else {
+     return false;
+    }
+    $conn->close();
+    return $availableGigs;
 }
 
 function getAllGigs()
@@ -124,7 +201,7 @@ function getAllGigs()
     die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM gigs";
+    $sql = "SELECT * FROM gigs WHERE ";
     $result = $conn->query($sql);
     $allGigs = array();
     if ($result->num_rows > 0) {

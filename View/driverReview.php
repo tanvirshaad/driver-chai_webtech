@@ -3,7 +3,6 @@
 require '../Controller/credentials.php';
 
 $_SESSION['userId'] = $currentUser['id'];
-echo $currentUser['id'];
 //array_push($user, '$currentUser');
 //echo $user;
 if (!isset($_SESSION['username'])) {
@@ -17,7 +16,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/welcome.css">
+    <link rel="stylesheet" href="../styles/review.css">
 </head>
 <body>
             <div class="navbar">
@@ -35,12 +34,22 @@ if (!isset($_SESSION['username'])) {
                     <!-- <a href="#about">About</a> -->
                 </div>
             </div>
-            <section class="content">
-                <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-                <button class="btn"><a  href="../Controller/logout.php">Logout</a></button>
-                <br>
-                <br>
-    <a class="update" href="update.php">Update user details</a>
+            <div class="container">
+            <div class="row">
+            <div class="revlab">
+            <label for="review">Write Driver Review:</label>
+            </div>
+            <div class="rev">
+            <textarea id="review" name="review" placeholder="Write a review" style="height:200px"></textarea>
+            </div>
+            </div>
+            <br>
+            <div class="row">
+            <input type="submit" class="submit" value="Submit">
+            </div>
+            </form>
+            </div>
+    
 
     <?php print_r($_SESSION); ?>
             </section>

@@ -7,6 +7,12 @@ if(isset($_SESSION['passwordmatched']))
 else{
     $passerrmsg = "";
 }
+$stringSpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$stringLength = strlen($stringSpace);
+$randomString = '';
+for ($i = 0; $i < 14; $i ++) {
+    $randomString = $randomString . $stringSpace[rand(0, $stringLength - 1)];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +57,10 @@ else{
                     <input type="text" name="email" id="email" />
                     <br>
                     <br>
+                    <label for="phone">Phone Number: </label>
+                    <input type="text" name="phone" id="phone" />
+                    <br>
+                    <br>
                     <label for="uname">Username:</label>
                     <input type="text" name="uname" id="uname" />
                     <br>           
@@ -73,6 +83,8 @@ else{
                     <br>
                     <label for="password">Confirm Password:</label>
                     <input type="password" name="cpassword" id="cpassword" />
+                    <input type="hidden" name="role" id="role" value = "customer" />
+                    <input type="hidden" name="refCode" id="refCode" value = "<?php echo $randomString;?>" />
                     <br>
                     <?php echo $passerrmsg;  ?>
                     <br>

@@ -100,6 +100,47 @@ function bindDriverWithJob($j_id, $d_id, $c_id)
         $conn->close();
 }
 
+function jobCidCheck($c_id)
+{
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    // Create connection
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM jobs WHERE c_id = ?";
+    $stmt = $conn->prepare($sql);
+
+   
+    $stmt->bind_param("s", $c_id);
+
+    
+    $stmt->execute();
+
+  
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Fetching row
+        return true;
+
+    } else {
+        
+        return false;
+    }
+
+    $stmt->close();
+    $conn->close();
+
+}
+// tanvir 
+
 function getRequestedCustomer($j_id, $status)
 {
     $servername = "localhost";
@@ -118,10 +159,10 @@ function getRequestedCustomer($j_id, $status)
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("is", $j_id, $status);
 
-    
+
     $stmt->execute();
 
-  
+
     $result = $stmt->get_result();
 
     $requestedCustomer = array();
@@ -142,26 +183,26 @@ function getRequestedCustomer($j_id, $status)
 function updateJobStatus($status, $id)
 {
     $servername = "localhost";
-	$dbusername = "root";
-	$dbpassword = "";
-	$dbname = "my_app";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
 
-	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-	$sql = "UPDATE jobs set status = ? where c_id = ?";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param("si", $status, $id);
-	$result = $stmt->execute();
-	if($result)
-	{
-	echo "Updated";
+    $sql = "UPDATE jobs set status = ? where c_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $status, $id);
+    $result = $stmt->execute();
+    if($result)
+    {
+    echo "Updated";
 
-	}else
-	{
-		echo "Failed to update password";
-	}
+    }else
+    {
+        echo "Failed to update password";
+    }
 }
 ?>
