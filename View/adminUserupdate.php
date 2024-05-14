@@ -1,6 +1,7 @@
 <?php
 
-require '../Controller/update.php'
+require '../Controller/adminUserupdate.php';
+print_r($user);
 
 ?>
 <!DOCTYPE html>
@@ -19,22 +20,17 @@ require '../Controller/update.php'
                     </ul>
                 </div>
                 <div class="navoption">
-                    <ul><li><a href="welcome.php">Home</a></li>
-                        <li><a href="customerGigView.php">Search Drivers</a></li>
-                        <li><a href="customerHistory.php">Previous Hiring History</a></li>
-                        <li><a href="customerNotification.php">Notification</a></li>
-                        <li><a href="trackVehicle.php">Track Vehicle</a></li>
-                        <li><a href="refer.php">Refer a friend!</a></li>
-                        <li><a href="Register.php">Profile</a></li>
-                        <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
+                    <ul>
+                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="Register.php">Register</a></li>
+                        <li><a href="#about">About</a></li>
                     </ul>
-                    <!-- <a href="#about">About</a> -->
                 </div>
             </div>
-    <form action="../Controller/update.php" method="post" novalidate>
+    <form action="../Controller/adminUserupdate.php" method="post" novalidate>
         
             <label for="uname">For the Username: </label>
-            <input type="text" name="uname" id="" value="<?php echo $loggedIn['username']; ?>" />
+            <input type="text" name="uname" id="" value="<?php echo $user['username']; ?>" />
             <br>
             <br>
             <label for="fname">First Name:</label>

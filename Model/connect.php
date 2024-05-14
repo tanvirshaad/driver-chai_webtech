@@ -404,6 +404,36 @@ function getSpecificCustomerDetails($id)
     $conn->close();
     return $users;
 }
+
+function deleteUser($id)
+{
+    $servername = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "my_app";
+
+    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+ 
+    if ($conn->connect_error) 
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "DELETE FROM users WHERE id=?";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) 
+    {
+        echo "User deleted successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
 
 

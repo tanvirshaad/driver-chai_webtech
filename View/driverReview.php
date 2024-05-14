@@ -1,8 +1,9 @@
 <?php
 //session_start();
-require '../Controller/credentials.php';
+//require '../Controller/credentials.php';
+require '../controller/getCustomerhistory.php';
 
-$_SESSION['userId'] = $currentUser['id'];
+//$_SESSION['userId'] = $currentUser['id'];
 //array_push($user, '$currentUser');
 //echo $user;
 if (!isset($_SESSION['username'])) {
@@ -26,8 +27,12 @@ if (!isset($_SESSION['username'])) {
                     </ul>
                 </div>
                 <div class="navoption">
-                    <ul>
-                        <li><a href="../index.php">Home</a></li>
+                    <ul><li><a href="welcome.php">Home</a></li>
+                        <li><a href="customerGigView.php">Search Drivers</a></li>
+                        <li><a href="customerHistory.php">Previous Hiring History</a></li>
+                        <li><a href="customerNotification.php">Notification</a></li>
+                        <li><a href="trackVehicle.php">Track Vehicle</a></li>
+                        <li><a href="refer.php">Refer a friend!</a></li>
                         <li><a href="Register.php">Profile</a></li>
                         <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
                     </ul>
@@ -36,6 +41,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="container">
             <div class="row">
+            <form action='../Controller/driverReview.php' method='POST' >
             <div class="revlab">
             <label for="review">Write Driver Review:</label>
             </div>
@@ -45,7 +51,10 @@ if (!isset($_SESSION['username'])) {
             </div>
             <br>
             <div class="row">
-            <input type="submit" class="submit" value="Submit">
+            <?php echo "<div>" . "<input type='hidden' name='driverId' value='" .$_SESSION['driverId'] . "'></div>"?>;
+                    
+            <input type="submit" name = "submit" class="submit" value="Submit">
+            </form>
             </div>
             </form>
             </div>

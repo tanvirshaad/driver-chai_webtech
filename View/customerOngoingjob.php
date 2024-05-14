@@ -1,8 +1,8 @@
 <?php
-//session_start();
-require '../Controller/credentials.php';
 
-$_SESSION['userId'] = $currentUser['id'];
+require '../Controller/customerOngoingjob.php';
+
+//$_SESSION['userId'] = $currentUser['id'];
 //array_push($user, '$currentUser');
 //echo $user;
 if (!isset($_SESSION['username'])) {
@@ -16,7 +16,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/welcome.css">
+    <link rel="stylesheet" href="../styles/notification.css">
 </head>
 <body>
             <div class="navbar">
@@ -38,13 +38,30 @@ if (!isset($_SESSION['username'])) {
                     <!-- <a href="#about">About</a> -->
                 </div>
             </div>
-            <section class="content">
-                <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-                <button class="btn"><a  href="../Controller/logout.php">Logout</a></button>
-                <br>
-                <br>
-    <a class="update" href="update.php">Update user details</a>
-
+            <div class="section">
+            <h1>Total Gigs: <?php  echo count($ongoingJobs); ?></h1>
+            <?php
+                echo '<div class="gigs-section">';
+                foreach($ongoingJobs as $gigs)
+                {
+                    echo '<div class = "item">';
+                    echo "<h3>" . $gigs['username'] . "</h3>";
+                    // echo "<br>";
+                    echo "<h5>" . "Car Type: " . $gigs['car_type'] . "</h5>";
+                    echo "<h2>" . "Hourly Rate: " . $gigs['hourly_rate'] . "</h2>";
+                    if($gigs['available'])
+                    {
+                        echo "Staus: Available";
+                    }
+                    else{
+                        echo "Staus: Unavailable";
+                    }
+                    echo "<div>" . "<form action='../Controller/customerOngoingjob.php' method='POST' ><input type='hidden' name='g_id' value='" .$gigs['g_id'] . "'> <input type='submit' class='btn' name='complete' value='Mark as Complete'>" . "</form></div>";
+                    echo "</div>";
+                }
+                echo '</div>';
+            ?>
+            </div>
     <?php print_r($_SESSION); ?>
             </section>
     

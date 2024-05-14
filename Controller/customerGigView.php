@@ -16,14 +16,14 @@ if($gigsIds)
     {
         $allAvailableGigs = getAllAvailableGigs($id['g_id']);
        # print_r($allAvailableGigs);
-        echo "upore kaj hoise";
+        
     }    
 }
 }
 else
 {
     $allAvailableGigs = getgigsfornewcustomer();
-    echo "niche kaj hoise";
+   
 }
 
 

@@ -21,12 +21,16 @@ require '../Controller/refer.php'
                     </ul>
                 </div>
                 <div class="navoption">
-                    <ul>
-                        <li><a href="../View/welcome.php">Home</a></li>
-                        <li><a href="Register.php">Register</a></li>
-                        <li><a href="../View/refer.php">Bring a friend</a></li>
-                        <li><a href="#about">About</a></li>
+                    <ul><li><a href="welcome.php">Home</a></li>
+                        <li><a href="customerGigView.php">Search Drivers</a></li>
+                        <li><a href="customerHistory.php">Previous Hiring History</a></li>
+                        <li><a href="customerNotification.php">Notification</a></li>
+                        <li><a href="trackVehicle.php">Track Vehicle</a></li>
+                        <li><a href="refer.php">Refer a friend!</a></li>
+                        <li><a href="Register.php">Profile</a></li>
+                        <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
                     </ul>
+                    <!-- <a href="#about">About</a> -->
                 </div>
             </div>
     <form action="../Controller/refer.php" method="post" novalidate>
