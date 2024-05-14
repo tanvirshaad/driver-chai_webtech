@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,33 +10,41 @@
     <link rel="stylesheet" href="../styles/createGig.css">
 </head>
 <body>
-    <div class="navbar">
+<div class="navbar">
                 <div class="logo">
                     <ul>
                         <li><a href="">Driver Chai</a></li>
                     </ul>
                 </div>
                 <div class="navoption">
-                    <ul>
-                        <li><a href="../index.php">Profile</a></li>
-                        <li><a href="selfGigs.php">My Gigs</a></li>
-                        
+                    <ul><li><a href="driverwelcome.php">Home</a></li>
+                        <li><a href="driverprofile.php">Profile</a></li>
+                        <li><a href="createGig.php">Create Gig</a></li>
+                        <li><a href="joblist.php">My Jobs</a></li>
+                        <li><a href="driverHistory.php">Previous History</a></li>
+                        <li><a href="refer.php">Refer a friend!</a></li>
+                        <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
+                        <li><a href="../controller/logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
             <div class="section">
                 <h1>Create your Gig</h1>
-                <form action="../Controller/createGig.php" method="POST">
+                <form action="../Controller/createGig.php" method="POST" novalidate>
                 <label for="title">Title: </label>
                 <input type="text" name="title" id="">
                 <br>
                 <br>
                 <label for="car_type">Car Type: </label>
                 <select name="car_type" id="car_type">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Coupe">Coupe</option>
+                     <option value="Sport">Sport</option>
+                    <option value="Crossover">Crossover</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Wagon">Wagon</option>
+                    <option value="Minivan">Minivan</option>
                 </select>
                 <br>
                 <br>

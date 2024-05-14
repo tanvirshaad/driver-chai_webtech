@@ -12,9 +12,9 @@
     die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM review WHERE d_id = ?";
+    $sql = "SELECT * FROM review";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+    // $stmt->bind_param("i", $id);
 
     
     $stmt->execute();
@@ -27,11 +27,12 @@
     // output data of each row
     while($row = $result->fetch_assoc()) {
         array_push($selfreview, $row);
+        // echo "hitted";
     }
     } else {
     echo "0 results";
     }
     $conn->close();
-
+    print_r($selfreview);
 
 ?>

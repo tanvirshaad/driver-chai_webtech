@@ -7,7 +7,10 @@ $selfgigs = getSelfGig($_SESSION['userId']);
 
 if(isset($_POST['delete']))
 {
-    deleteGig($_POST["g_id"]);
+    if(deleteGig($_POST["g_id"]))
+    {
+        header('Location: http://localhost/project/View/selfgigs.php');
+    }
 
 }
 

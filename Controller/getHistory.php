@@ -12,6 +12,6 @@ foreach($users as $user)
     array_push($historyUser, getSpecificCustomerDetails($user['c_id']));
     
 }
-print_r($historyUser);
+
 
 ?>

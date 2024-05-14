@@ -278,12 +278,12 @@ function credentials($username, $password)
         $row = $result->fetch_assoc();
         $uname = $row['username'];
         $pass = $row['password'];
-
+        $role = $row['role'];
         // Check if the provided credentials match
         if ($username == $uname && $password == $pass) {
-            return true;
+            return $role;
         } else {
-            return false;
+            return $role;
         }
     } else {
         echo "0 results";

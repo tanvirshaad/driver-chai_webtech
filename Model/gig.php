@@ -22,7 +22,7 @@ function createGig($userId, $username, $title, $hourly_rate, $car_type, $availab
 
     
     if ($stmt->execute()) {
-        echo "created";
+        return true;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         return false;
@@ -201,7 +201,7 @@ function getAllGigs()
     die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM gigs WHERE ";
+    $sql = "SELECT * FROM gigs";
     $result = $conn->query($sql);
     $allGigs = array();
     if ($result->num_rows > 0) {
@@ -236,9 +236,9 @@ function deleteGig($g_id)
 
     // Execute statement
     if ($stmt->execute()) {
-        echo "Record deleted successfully";
+        return true;
     } else {
-        echo "Error deleting record: " . $stmt->error;
+        return false;
     }
 
     // Close statement and connection

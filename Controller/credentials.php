@@ -36,13 +36,24 @@ if(isset($_POST['register']))
 if(isset($_POST['login']))
 {
     if($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
+    {   
         $username = $_POST['uname'];
         $password = $_POST['password'];
         if(credentials($username, $password))
-        {
-            $_SESSION['username'] = $username;
-            header('Location: http://localhost/project/View/welcome.php');
+        {   
+            $role = credentials($username, $password);
+            if($role == 'driver')
+            {
+                $_SESSION['username'] = $username;
+                header('Location: http://localhost/project/View/driverwelcome.php');
+
+            }
+            else if($role == 'customer')
+            {
+                $_SESSION['username'] = $username;
+                header('Location: http://localhost/project/View/welcome.php');
+            }
+       
         }
         else
         {

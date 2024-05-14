@@ -34,12 +34,12 @@ print_r($user);
             <br>
             <br>
             <label for="fname">First Name:</label>
-            <input type="text" name="fname" id="" value="<?php echo $loggedIn['firstName']; ?>" />
+            <input type="text" name="fname" id="" value="<?php echo $user['firstName']; ?>" />
             <br>
             <br>
             
             <label for="lname">Last Name:</label>
-            <input type="text" name="lname" id="" value="<?php echo $loggedIn['lastName'];?>" />
+            <input type="text" name="lname" id="" value="<?php echo $user['lastName'];?>" />
             <br>
             <br>
             <label for="password">Password:</label>

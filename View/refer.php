@@ -14,7 +14,7 @@ require '../Controller/refer.php'
     <link rel="stylesheet" href="../styles/refer.css">
 </head>
 <body>
-    <div class="navbar">
+<div class="navbar">
                 <div class="logo">
                     <ul>
                         <li><a href="">Driver Chai</a></li>
@@ -23,12 +23,13 @@ require '../Controller/refer.php'
                 <div class="navoption">
                     <ul><li><a href="welcome.php">Home</a></li>
                         <li><a href="customerGigView.php">Search Drivers</a></li>
-                        <li><a href="customerHistory.php">Previous Hiring History</a></li>
+                        <li><a href="customerHistory.php">Hiring History</a></li>
+                        <li><a href="customerOngoingjob.php">hired drivers</a></li>
                         <li><a href="customerNotification.php">Notification</a></li>
                         <li><a href="trackVehicle.php">Track Vehicle</a></li>
                         <li><a href="refer.php">Refer a friend!</a></li>
-                        <li><a href="Register.php">Profile</a></li>
                         <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
+                        <li><a href="../controller/logout.php">Logout</a></li>
                     </ul>
                     <!-- <a href="#about">About</a> -->
                 </div>

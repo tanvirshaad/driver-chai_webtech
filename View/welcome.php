@@ -1,10 +1,9 @@
 <?php
-//session_start();
+
 require '../Controller/credentials.php';
 
 $_SESSION['userId'] = $currentUser['id'];
-//array_push($user, '$currentUser');
-//echo $user;
+
 if (!isset($_SESSION['username'])) {
 		header("Location: Login.php");
 		exit();
@@ -28,14 +27,14 @@ if (!isset($_SESSION['username'])) {
                 <div class="navoption">
                     <ul><li><a href="welcome.php">Home</a></li>
                         <li><a href="customerGigView.php">Search Drivers</a></li>
-                        <li><a href="customerHistory.php">Previous Hiring History</a></li>
+                        <li><a href="customerHistory.php">Hiring History</a></li>
+                        <li><a href="customerOngoingjob.php">hired drivers</a></li>
                         <li><a href="customerNotification.php">Notification</a></li>
                         <li><a href="trackVehicle.php">Track Vehicle</a></li>
                         <li><a href="refer.php">Refer a friend!</a></li>
-                        <li><a href="Register.php">Profile</a></li>
                         <li><a class="disabled">Logged in as: <?php echo $_SESSION['username']; ?></a></li>
+                        <li><a href="../controller/logout.php">Logout</a></li>
                     </ul>
-                    <!-- <a href="#about">About</a> -->
                 </div>
             </div>
             <section class="content">
@@ -45,7 +44,6 @@ if (!isset($_SESSION['username'])) {
                 <br>
     <a class="update" href="update.php">Update user details</a>
 
-    <?php print_r($_SESSION); ?>
             </section>
     
 </body>

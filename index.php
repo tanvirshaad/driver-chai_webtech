@@ -21,6 +21,7 @@
         </div>
         <br>
         <button><a href="View/Login.php">Login</a></button>
+        <button><a href="View/adminHome.php">Admin pannel</a></button>
     </div>
 </center>
 </body>
